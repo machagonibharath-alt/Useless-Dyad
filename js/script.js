@@ -130,7 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   renderProperties();
----------------------------------------
+
+  // -----------------------------------------
   // Fade-in animation
   // -----------------------------------------
 
