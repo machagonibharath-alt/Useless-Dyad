@@ -98,7 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
       card.innerHTML = `
         <div class="property-image">
 
-          <a href="${property.youtube}" target="_blank" rel="noopener noreferrer">
+          <a
+            href="${property.youtube}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
 
             <img
               src="${property.image}"
@@ -144,6 +148,12 @@ document.addEventListener("DOMContentLoaded", () => {
       propertyList.appendChild(card);
 
     });
+
+  } else {
+
+    console.error(
+      "Property cards could not be loaded. Check properties.js."
+    );
 
   }
 
