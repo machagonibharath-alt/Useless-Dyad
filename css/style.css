@@ -689,3 +689,34 @@ footer p {
 .more-properties .btn {
   min-width: 140px;
 }
+
+
+/* =========================================
+   HERO BACKGROUND VIDEO
+========================================= */
+
+.hero {
+  background: #050506;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(5,5,6,0.86) 0%, rgba(5,5,6,0.60) 48%, rgba(5,5,6,0.42) 100%),
+    linear-gradient(0deg, rgba(5,5,6,0.55), rgba(5,5,6,0.25));
+}
+
+.hero-content {
+  z-index: 2;
+}
