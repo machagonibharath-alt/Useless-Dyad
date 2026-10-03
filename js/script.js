@@ -130,50 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   renderProperties();
-
-  // -----------------------------------------
-  // YOUTUBE VIDEO CARDS
-  // -----------------------------------------
-
-  const videoList = document.getElementById("video-list");
-
-  function renderVideos() {
-    if (!videoList) return;
-
-    if (typeof youtubeVideos === "undefined" || !Array.isArray(youtubeVideos)) {
-      return;
-    }
-
-    videoList.innerHTML = youtubeVideos.map(function (video) {
-      return `
-        <a
-          class="video-card"
-          href="${video.url}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="video-thumbnail">
-            <img
-              src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg"
-              alt="${video.title}"
-              loading="lazy"
-            >
-            <span class="play-button">▶</span>
-          </div>
-          <div class="video-info">
-            <h3>${video.title}</h3>
-            <p>Watch on YouTube →</p>
-          </div>
-        </a>
-      `;
-    }).join("");
-  }
-
-  renderVideos();
-
-
-
-  // -----------------------------------------
+// -----------------------------------------
   // YOUTUBE VIDEO CARDS
   // -----------------------------------------
 
