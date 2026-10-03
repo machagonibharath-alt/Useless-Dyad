@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.classList.toggle("active");
     });
 
-    // Close menu after clicking a link
     const navLinks = nav.querySelectorAll("a");
 
     navLinks.forEach((link) => {
@@ -80,6 +79,73 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   });
+
+
+  // -----------------------------------------
+  // PROPERTY CARDS
+  // -----------------------------------------
+
+  const propertyList = document.getElementById("property-list");
+
+  if (propertyList && typeof properties !== "undefined") {
+
+    properties.forEach((property) => {
+
+      const card = document.createElement("article");
+
+      card.className = "property-card";
+
+      card.innerHTML = `
+        <div class="property-image">
+
+          <a href="${property.youtube}" target="_blank" rel="noopener noreferrer">
+
+            <img
+              src="${property.image}"
+              alt="${property.title}"
+            >
+
+            <div class="property-price">
+              ${property.price}
+            </div>
+
+          </a>
+
+        </div>
+
+        <div class="property-info">
+
+          <h3>${property.title}</h3>
+
+          <div class="property-location">
+            ${property.location}
+          </div>
+
+          <div class="property-details">
+
+            ${property.details
+              .map((detail) => `<span>${detail}</span>`)
+              .join("")}
+
+          </div>
+
+          <a
+            href="${property.youtube}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="property-button"
+          >
+            ▶ Watch Property Video
+          </a>
+
+        </div>
+      `;
+
+      propertyList.appendChild(card);
+
+    });
+
+  }
 
 
   // -----------------------------------------
