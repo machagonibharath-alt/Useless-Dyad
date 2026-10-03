@@ -87,76 +87,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const propertyList = document.getElementById("property-list");
 
-  if (propertyList && typeof properties !== "undefined") {
+  function renderProperties() {
+    if (!propertyList) return;
 
-    properties.forEach((property) => {
+    if (typeof properties === "undefined" || !Array.isArray(properties)) {
+      propertyList.innerHTML = '<p style="color:#777;grid-column:1/-1;">Properties could not be loaded.</p>';
+      console.error("Useless Dyad: properties.js was not loaded.");
+      return;
+    }
 
+    propertyList.innerHTML = "";
+
+    properties.forEach(function (property) {
       const card = document.createElement("article");
-
       card.className = "property-card";
+
+      const details = Array.isArray(property.details)
+        ? property.details.map(function (detail) {
+            return "<span>" + detail + "</span>";
+          }).join("")
+        : "";
 
       card.innerHTML = `
         <div class="property-image">
-
-          <a
-            href="${property.youtube}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
-            <img
-              src="${property.image}"
-              alt="${property.title}"
-            >
-
-            <div class="property-price">
-              ${property.price}
-            </div>
-
+          <a href="${property.youtube}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${property.title}">
+            <img src="${property.image}" alt="${property.title}" loading="lazy">
+            <div class="property-price">${property.price}</div>
           </a>
-
         </div>
-
         <div class="property-info">
-
           <h3>${property.title}</h3>
-
-          <div class="property-location">
-            ${property.location}
-          </div>
-
-          <div class="property-details">
-
-            ${property.details
-              .map((detail) => `<span>${detail}</span>`)
-              .join("")}
-
-          </div>
-
-          <a
-            href="${property.youtube}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="property-button"
-          >
+          <div class="property-location">${property.location}</div>
+          <div class="property-details">${details}</div>
+          <a href="${property.youtube}" target="_blank" rel="noopener noreferrer" class="property-button">
             ▶ Watch Property Video
           </a>
-
         </div>
       `;
 
       propertyList.appendChild(card);
-
     });
-
-  } else {
-
-    console.error(
-      "Property cards could not be loaded. Check properties.js."
-    );
-
   }
 
+  renderProperties();
 
   // -----------------------------------------
   // Fade-in animation
