@@ -775,3 +775,13 @@ footer p {
   .latest-videos-heading { align-items: flex-start; flex-direction: column; }
   .latest-video-grid { grid-template-columns: 1fr; }
 }
+
+/* PROPERTY MARKETPLACE */
+.marketplace-tools{display:grid;grid-template-columns:minmax(220px,2fr) repeat(3,minmax(145px,1fr));gap:12px;margin:0 0 20px}
+.market-search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #ddd;border-radius:9px;padding:0 14px;color:#777}
+.market-search input,.marketplace-tools select{width:100%;min-width:0;height:48px;border:1px solid #ddd;border-radius:9px;background:#fff;color:#222;padding:0 13px;font:inherit;outline:none}
+.market-search input{border:0;padding:0}.market-search:focus-within,.marketplace-tools select:focus{border-color:#728900;box-shadow:0 0 0 3px #72890018}
+.marketplace-summary{display:flex;justify-content:space-between;gap:15px;align-items:center;margin:0 0 18px;color:#666;font-size:.82rem}.marketplace-summary strong{color:#222;font-size:.95rem}
+.property-card{display:flex;flex-direction:column}.property-image{height:auto;aspect-ratio:16/10;background:#e8e8e8}.property-image>a{display:block;position:relative;height:100%}.property-image img{height:100%;width:100%;object-fit:cover}.property-info{display:flex;flex-direction:column;flex:1}.property-location{min-height:2.5em}.property-details{flex-wrap:wrap;gap:8px 13px}.property-status{position:absolute;right:12px;top:12px;background:#d9ff3f;color:#111;border-radius:30px;padding:5px 10px;font-size:.7rem;font-weight:800;text-transform:uppercase}.property-id{font-size:.72rem;color:#858585;margin-bottom:7px;letter-spacing:.04em}.property-info .property-button{margin-top:auto;align-self:flex-start}.property-button.whatsapp{background:#176b3a;margin-left:7px}.market-empty{grid-column:1/-1;padding:38px 20px;text-align:center;color:#666;background:#fff;border:1px dashed #ccc;border-radius:12px}.marketplace-footnote{margin-top:26px;text-align:center;color:#666;font-size:.88rem}.marketplace-footnote a{color:#465800;font-weight:700}
+@media(max-width:900px){.marketplace-tools{grid-template-columns:repeat(2,minmax(0,1fr))}.market-search{grid-column:1/-1}}
+@media(max-width:600px){.marketplace-tools{grid-template-columns:1fr}.market-search{grid-column:auto}.marketplace-summary{align-items:flex-start;flex-direction:column}.property-info .property-button{width:100%;text-align:center}.property-button.whatsapp{margin:8px 0 0}}
