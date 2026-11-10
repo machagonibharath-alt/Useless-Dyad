@@ -8,12 +8,24 @@ create table if not exists public.admin_users (
 );
 alter table public.admin_users enable row level security;
 
-create or replace function public.is_property_admin()
-returns boolean language sql stable security definer
-set search_path = public
+create schema if not exists private;
+revoke all on schema private from public;
+grant usage on schema private to authenticated;
+
+create or replace function private.is_property_admin()
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
 as $$
-  select exists (select 1 from public.admin_users where user_id = auth.uid());
+  select exists (
+    select 1 from public.admin_users au
+    where au.user_id = (select auth.uid())
+  );
 $$;
+revoke all on function private.is_property_admin() from public;
+grant execute on function private.is_property_admin() to authenticated;
 
 create table if not exists public.properties (
   id text primary key default ('UD-' || upper(substr(replace(gen_random_uuid()::text,'-',''),1,8))),
@@ -35,29 +47,43 @@ create table if not exists public.properties (
 );
 alter table public.properties enable row level security;
 
+grant select on public.properties to anon, authenticated;
+grant insert, update, delete on public.properties to authenticated;
+grant select on public.admin_users to authenticated;
+
 drop policy if exists "Public can view available properties" on public.properties;
 create policy "Public can view available properties" on public.properties
-for select to anon, authenticated using (status = 'available' or public.is_property_admin());
+for select to anon using (status = 'available');
+
+drop policy if exists "Signed-in users can view available properties" on public.properties;
+create policy "Signed-in users can view available properties" on public.properties
+for select to authenticated using (status = 'available');
+
+drop policy if exists "Admins can view all properties" on public.properties;
+create policy "Admins can view all properties" on public.properties
+for select to authenticated using ((select private.is_property_admin()));
 
 drop policy if exists "Admins can insert properties" on public.properties;
 create policy "Admins can insert properties" on public.properties
-for insert to authenticated with check (public.is_property_admin());
+for insert to authenticated with check ((select private.is_property_admin()));
 
 drop policy if exists "Admins can update properties" on public.properties;
 create policy "Admins can update properties" on public.properties
-for update to authenticated using (public.is_property_admin()) with check (public.is_property_admin());
+for update to authenticated using ((select private.is_property_admin()))
+with check ((select private.is_property_admin()));
 
 drop policy if exists "Admins can delete properties" on public.properties;
 create policy "Admins can delete properties" on public.properties
-for delete to authenticated using (public.is_property_admin());
+for delete to authenticated using ((select private.is_property_admin()));
 
 drop policy if exists "Admins can read admin list" on public.admin_users;
 create policy "Admins can read admin list" on public.admin_users
-for select to authenticated using (public.is_property_admin());
+for select to authenticated using ((select private.is_property_admin()));
 
 insert into storage.buckets (id,name,public,file_size_limit,allowed_mime_types)
 values ('property-images','property-images',true,8388608,array['image/jpeg','image/png','image/webp','image/avif'])
-on conflict (id) do update set public=true,file_size_limit=8388608,allowed_mime_types=array['image/jpeg','image/png','image/webp','image/avif'];
+on conflict (id) do update set public=true,file_size_limit=8388608,
+allowed_mime_types=array['image/jpeg','image/png','image/webp','image/avif'];
 
 drop policy if exists "Public can view property photos" on storage.objects;
 create policy "Public can view property photos" on storage.objects
@@ -65,15 +91,19 @@ for select to anon,authenticated using (bucket_id = 'property-images');
 
 drop policy if exists "Admins can upload property photos" on storage.objects;
 create policy "Admins can upload property photos" on storage.objects
-for insert to authenticated with check (bucket_id = 'property-images' and public.is_property_admin());
+for insert to authenticated with check (bucket_id = 'property-images' and (select private.is_property_admin()));
 
 drop policy if exists "Admins can update property photos" on storage.objects;
 create policy "Admins can update property photos" on storage.objects
-for update to authenticated using (bucket_id = 'property-images' and public.is_property_admin()) with check (bucket_id = 'property-images' and public.is_property_admin());
+for update to authenticated using (bucket_id = 'property-images' and (select private.is_property_admin()))
+with check (bucket_id = 'property-images' and (select private.is_property_admin()));
 
 drop policy if exists "Admins can delete property photos" on storage.objects;
 create policy "Admins can delete property photos" on storage.objects
-for delete to authenticated using (bucket_id = 'property-images' and public.is_property_admin());
+for delete to authenticated using (bucket_id = 'property-images' and (select private.is_property_admin()));
+
+-- Remove the legacy helper if this script is run over an earlier setup.
+drop function if exists public.is_property_admin();
 
 -- Create your own admin login in Supabase Authentication > Users first.
 -- Then replace the email below with the exact email used for that login and run:
