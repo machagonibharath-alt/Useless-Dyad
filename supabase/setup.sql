@@ -56,12 +56,11 @@ create policy "Public can view available properties" on public.properties
 for select to anon using (status = 'available');
 
 drop policy if exists "Signed-in users can view available properties" on public.properties;
-create policy "Signed-in users can view available properties" on public.properties
-for select to authenticated using (status = 'available');
-
 drop policy if exists "Admins can view all properties" on public.properties;
-create policy "Admins can view all properties" on public.properties
-for select to authenticated using ((select private.is_property_admin()));
+drop policy if exists "Signed-in users can view available properties and admins all" on public.properties;
+create policy "Signed-in users can view available properties and admins all" on public.properties
+for select to authenticated
+using (status = 'available' or (select private.is_property_admin()));
 
 drop policy if exists "Admins can insert properties" on public.properties;
 create policy "Admins can insert properties" on public.properties
