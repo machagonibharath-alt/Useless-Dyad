@@ -720,3 +720,58 @@ footer p {
 .hero-content {
   z-index: 2;
 }
+
+
+/* =========================================
+   AUTOMATIC LATEST YOUTUBE VIDEOS
+========================================= */
+.latest-videos { margin-top: 90px; }
+.latest-videos-heading {
+  display: flex; justify-content: space-between; align-items: end;
+  gap: 24px; margin-bottom: 28px;
+}
+.latest-videos-heading h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -1.5px;
+}
+.latest-videos-heading p { color: var(--text); margin-top: 8px; }
+.latest-video-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px;
+}
+.latest-video-card {
+  min-width: 0; overflow: hidden; border: 1px solid var(--border);
+  border-radius: 13px; background: var(--card);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.latest-video-card:hover {
+  transform: translateY(-5px); border-color: rgba(217,255,63,0.4);
+}
+.latest-video-thumb {
+  display: block; position: relative; aspect-ratio: 16 / 9;
+  overflow: hidden; background: #222;
+}
+.latest-video-thumb img {
+  width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s ease;
+}
+.latest-video-card:hover .latest-video-thumb img { transform: scale(1.04); }
+.latest-video-play {
+  position: absolute; left: 50%; top: 50%; width: 48px; height: 48px;
+  display: grid; place-items: center; transform: translate(-50%, -50%);
+  border-radius: 50%; background: var(--accent); color: #111;
+  font-size: 17px; padding-left: 3px;
+}
+.latest-video-info { padding: 18px; }
+.latest-video-info h3 { color: var(--white); font-size: 1rem; line-height: 1.45; min-height: 2.9em; }
+.latest-video-date { color: #85858d; font-size: 0.78rem; margin-top: 10px; }
+.latest-video-link { display: inline-block; margin-top: 14px; color: var(--accent); font-size: 0.85rem; font-weight: 700; }
+.video-feed-status {
+  grid-column: 1 / -1; color: var(--text); padding: 22px;
+  border: 1px dashed var(--border); border-radius: 10px;
+}
+.video-feed-status a { color: var(--accent); font-weight: 600; }
+@media (max-width: 900px) { .latest-video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .latest-videos { margin-top: 65px; }
+  .latest-videos-heading { align-items: flex-start; flex-direction: column; }
+  .latest-video-grid { grid-template-columns: 1fr; }
+}
