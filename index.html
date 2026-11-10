@@ -23,7 +23,7 @@
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=video1"
+    href="css/style.css?v=marketplace1"
   >
 </head>
 
@@ -317,188 +317,26 @@
        REAL ESTATE
   ================================= -->
 
-  <section
-    id="real-estate"
-    class="section real-estate"
-  >
-
-    <div class="container">
-
-
-      <div class="section-heading">
-
-        <div class="section-label">
-          OUR CURRENT PROJECT
-        </div>
-
-        <h2>
-          Latest Properties
-        </h2>
-
-        <p>
-          New property tours around Hyderabad
-          and nearby areas.
-        </p>
-
-      </div>
-
-
-      <!--
-        PROPERTY CARDS WILL AUTOMATICALLY
-        APPEAR HERE FROM properties.js
-      -->
-
-<div
-        class="property-grid"
-        id="property-list"
-      >
-        <article class="property-card">
-          <div class="property-image">
-            <a href="https://youtu.be/E79koeAgsaA" target="_blank" rel="noopener noreferrer" aria-label="Watch G+1 Independent House">
-              <img src="https://img.youtube.com/vi/E79koeAgsaA/hqdefault.jpg" alt="G+1 Independent House" loading="lazy">
-              <div class="property-price">₹1.20 Crore</div>
-            </a>
-          </div>
-          <div class="property-info">
-            <h3>G+1 Independent House</h3>
-            <div class="property-location">Turkayamjal • Near TCS Adibatla</div>
-            <div class="property-details"><span>150 Sq Yards</span><span>G+1</span><span>New House</span></div>
-            <a href="https://youtu.be/E79koeAgsaA" target="_blank" rel="noopener noreferrer" class="property-button">▶ Watch Property Video</a>
-          </div>
-        </article>
-
-        <article class="property-card">
-          <div class="property-image">
-            <a href="https://youtu.be/K_PAbQWEpQM" target="_blank" rel="noopener noreferrer" aria-label="Watch 2 BHK Independent House">
-              <img src="https://img.youtube.com/vi/K_PAbQWEpQM/hqdefault.jpg" alt="2 BHK Independent House" loading="lazy">
-              <div class="property-price">₹74 Lakhs</div>
-            </a>
-          </div>
-          <div class="property-info">
-            <h3>2 BHK Independent House</h3>
-            <div class="property-location">Nadergul • Hyderabad</div>
-            <div class="property-details"><span>2 BHK</span><span>New House</span><span>Independent</span></div>
-            <a href="https://youtu.be/K_PAbQWEpQM" target="_blank" rel="noopener noreferrer" class="property-button">▶ Watch Property Video</a>
-          </div>
-        </article>
-
-        <article class="property-card">
-          <div class="property-image">
-            <a href="https://youtu.be/4cgiVLTqe0w" target="_blank" rel="noopener noreferrer" aria-label="Watch G+1 Independent House">
-              <img src="https://img.youtube.com/vi/4cgiVLTqe0w/hqdefault.jpg" alt="G+1 Independent House" loading="lazy">
-              <div class="property-price">₹1.39 Crore</div>
-            </a>
-          </div>
-          <div class="property-info">
-            <h3>G+1 Independent House</h3>
-            <div class="property-location">Turkayamjal • Near TCS Adibatla</div>
-            <div class="property-details"><span>200 Sq Yards</span><span>G+1</span><span>New House</span></div>
-            <a href="https://youtu.be/4cgiVLTqe0w" target="_blank" rel="noopener noreferrer" class="property-button">▶ Watch Property Video</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="more-properties">
-        <a
-          href="https://www.youtube.com/@UselessDyad"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary"
-        >
-          More →
-        </a>
-      </div>
-
-
+  <section id="real-estate" class="section real-estate">
+  <div class="container">
+    <div class="section-heading">
+      <div class="section-label">PROPERTY MARKETPLACE</div>
+      <h2>Find your next home.</h2>
+      <p>Explore property listings shared by the Useless Dyad team. Contact us directly to arrange a visit.</p>
     </div>
-
-  </section>
-
-
+    <div class="marketplace-tools">
+      <label class="market-search"><span>⌕</span><input id="property-search" type="search" placeholder="Search locality, property or ID" aria-label="Search properties"></label>
+      <select id="filter-type" aria-label="Property type"><option value="">All property types</option><option>Independent House</option><option>Villa</option><option>Apartment</option><option>Plot</option></select>
+      <select id="filter-bhk" aria-label="Bedrooms"><option value="">Any BHK</option><option value="1">1 BHK</option><option value="2">2 BHK</option><option value="3">3 BHK</option><option value="4">4+ BHK</option></select>
+      <select id="filter-budget" aria-label="Maximum budget"><option value="">Any budget</option><option value="5000000">Up to ₹50 Lakhs</option><option value="7500000">Up to ₹75 Lakhs</option><option value="10000000">Up to ₹1 Crore</option><option value="15000000">Up to ₹1.5 Crore</option><option value="20000000">Up to ₹2 Crore</option></select>
+    </div>
+    <div class="marketplace-summary"><strong id="property-count">Loading properties…</strong><span>Availability and prices can change. Verify title documents and details before paying.</span></div>
+    <div class="property-grid" id="property-list" aria-live="polite"><p class="market-empty">Loading available properties…</p></div>
+    <div class="marketplace-footnote">Want to list a property? <a href="https://wa.me/919949313533?text=I%20want%20to%20list%20my%20property%20on%20Useless%20Dyad" target="_blank" rel="noopener">Contact our team on WhatsApp ↗</a></div>
+  </div>
+</section>
 
   <!-- ================================
-       YOUTUBE
-  ================================= -->
-
-  <section
-    id="youtube"
-    class="section youtube-section"
-  >
-
-    <div class="container">
-
-      <div class="youtube-box">
-
-
-        <div class="youtube-video">
-
-          <a
-            href="https://www.youtube.com/@UselessDyad"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
-            <img
-              src="images/youtube.jpg"
-              alt="Useless Dyad YouTube"
-            >
-
-          </a>
-
-        </div>
-
-
-        <div class="youtube-info">
-
-          <div class="section-label">
-            OUR YOUTUBE
-          </div>
-
-
-          <h3>
-            We go there.
-            We record it.
-          </h3>
-
-
-          <p>
-            Follow our property tours, experiments,
-            ideas and journey as we try to build
-            something from zero.
-          </p>
-
-
-          <a
-            href="https://www.youtube.com/@UselessDyad"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-primary"
-          >
-            Visit Our YouTube
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-      <div class="latest-videos">
-        <div class="latest-videos-heading">
-          <div>
-            <div class="section-label">FRESH FROM OUR CHANNEL</div>
-            <h2>Latest Videos</h2>
-            <p>Our newest uploads, updated automatically from YouTube.</p>
-          </div>
-          <a class="btn btn-outline" href="https://www.youtube.com/@UselessDyad/videos" target="_blank" rel="noopener noreferrer">View all videos ↗</a>
-        </div>
-        <div class="latest-video-grid" id="latest-video-list" aria-live="polite">
-          <p class="video-feed-status">Loading our latest videos…</p>
-        </div>
-      </div>
-
-  </section><!-- ================================
        JOURNEY
   ================================= -->
 
@@ -647,10 +485,12 @@
        properties.js MUST come first
   -->
 
-  <script src="js/properties.js?v=video1"></script>
-  <script src="js/script.js?v=video1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/script.js?v=marketplace1"></script>
 
 
+  <script src="js/marketplace.js?v=marketplace1"></script>
 </body>
 
 </html>
