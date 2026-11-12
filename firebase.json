@@ -6,6 +6,7 @@
       ".firebaserc",
       "**/.*",
       "**/node_modules/**",
+      "**/.env*",
       ".github/**",
       "supabase/**",
       "README.md",
